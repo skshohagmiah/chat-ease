@@ -44,7 +44,7 @@ export default function Page() {
   }, [room]);
 
   if (token === "") {
-    return <div>Getting token...</div>;
+    return <div className='text-center '>Getting token...</div>;
   }
 
   return (
