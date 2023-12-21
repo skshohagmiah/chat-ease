@@ -13,9 +13,8 @@ import {
 import { useEffect, useState } from 'react';
 import { Track } from 'livekit-client';
 import { useParams, usePathname } from 'next/navigation';
-import { User } from '@prisma/client';
 
-export default function Page({user}:{user:User}) {
+export default function Page() {
   // TODO: get user input for room and name
   const [isAudio, setIsAudio] = useState(false)
   const pathname = usePathname()
