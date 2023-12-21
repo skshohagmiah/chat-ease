@@ -10,12 +10,11 @@ import {
   ControlBar,
   useTracks,
 } from '@livekit/components-react';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Track } from 'livekit-client';
-import { useParams, usePathname } from 'next/navigation';
-import { User } from '@prisma/client';
+import { useParams } from 'next/navigation';
 
-export default function Page({user}:{user:User}) {
+export default function Page() {
   // TODO: get user input for room and name
 
   const params  = useParams()
@@ -35,7 +34,7 @@ export default function Page({user}:{user:User}) {
         console.error(e);
       }
     })();
-  }, []);
+  }, [room]);
 
   if (token === "") {
     return <div>Getting token...</div>;
