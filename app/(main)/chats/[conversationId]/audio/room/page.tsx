@@ -10,7 +10,7 @@ import {
   ControlBar,
   useTracks,
 } from '@livekit/components-react';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Track } from 'livekit-client';
 import { useParams, usePathname } from 'next/navigation';
 import { User } from '@prisma/client';
@@ -28,7 +28,7 @@ export default function Page({user}:{user:User}) {
     if(pathname.includes('audio')){
       setIsAudio(true)
     }
-  },[])
+  },[pathname])
 
   useEffect(() => {
     (async () => {
@@ -42,7 +42,7 @@ export default function Page({user}:{user:User}) {
         console.error(e);
       }
     })();
-  }, []);
+  }, [room]);
 
   if (token === "") {
     return <div>Getting token...</div>;
