@@ -18,7 +18,7 @@ interface ResponseProps {
   text: string;
   imageUrl?: string;
   userId: string;
-  createdAt:Date
+  createdAt: Date;
 }
 
 const MessageArea = ({
@@ -42,7 +42,6 @@ const MessageArea = ({
     };
   }, [conversationId]);
 
- 
   return (
     <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-900 space-y-2 relative p-2">
       {messages?.map((message) => (
@@ -50,12 +49,22 @@ const MessageArea = ({
           {message.userId === user?.id ? (
             <div className="align-start flex gap-4 items-center">
               <Avatar url={user.image!} />
-              <div className="flex flex-col p-1 rounded-md bg-slate-800">
-                <p>{message.text}</p>
-                <small className="text-xs text-slate-400">
-                {formatDate(message.createdAt).toString()}
-                </small>
-                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
+              <div>
+                <div className="flex flex-col p-1 rounded-md bg-slate-800">
+                  <p>{message.text}</p>
+                  <small className="text-xs text-slate-400">
+                    {formatDate(message.createdAt).toString()}
+                  </small>
+                </div>
+                {message.imageUrl && (
+                  <Image
+                  className="mt-2 rounded"
+                    src={message.imageUrl}
+                    alt="text attachment"
+                    width={300}
+                    height={300}
+                  />
+                )}
               </div>
             </div>
           ) : (
@@ -64,9 +73,16 @@ const MessageArea = ({
               <div className="flex flex-col p-1 rounded-md bg-slate-800">
                 <p>{message.text}</p>
                 <small className="text-xs text-slate-400">
-                {formatDate(message.createdAt).toString()}
+                  {formatDate(message.createdAt).toString()}
                 </small>
-                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
+                {message.imageUrl && (
+                  <Image
+                    src={message.imageUrl}
+                    alt="text attachment"
+                    width={200}
+                    height={300}
+                  />
+                )}
               </div>
             </div>
           )}
@@ -81,9 +97,16 @@ const MessageArea = ({
               <div className="flex flex-col p-1 rounded-md bg-slate-800">
                 <p>{message.text}</p>
                 <small className="text-xs text-slate-400">
-                {formatDate(message.createdAt).toString()}
+                  {formatDate(message.createdAt).toString()}
                 </small>
-                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
+                {message.imageUrl && (
+                  <Image
+                    src={message.imageUrl}
+                    alt="text attachment"
+                    width={200}
+                    height={300}
+                  />
+                )}
               </div>
             </div>
           ) : (
@@ -92,9 +115,16 @@ const MessageArea = ({
               <div className="flex flex-col p-1 rounded-md bg-slate-800">
                 <p>{message.text}</p>
                 <small className="text-xs text-slate-400">
-                {formatDate(message.createdAt).toString()}
+                  {formatDate(message.createdAt).toString()}
                 </small>
-                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
+                {message.imageUrl && (
+                  <Image
+                    src={message.imageUrl}
+                    alt="text attachment"
+                    width={200}
+                    height={300}
+                  />
+                )}
               </div>
             </div>
           )}

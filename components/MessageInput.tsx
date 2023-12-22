@@ -8,7 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import axios from 'axios';
 import { User } from '@prisma/client';
-import Button from './Button';
 import Modal from './Modal';
 
 
@@ -40,7 +39,6 @@ const MessageInput = ({user}:{user:User}) => {
   }
 
   const onComplete = (url:string) => {
-    console.log('image upload',url)
     setValue('imageUrl',url)
   }
 
