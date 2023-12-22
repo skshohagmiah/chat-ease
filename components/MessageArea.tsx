@@ -24,14 +24,14 @@ const MessageArea = ({
   user,
   conversationId,
 }: MessageAreaProps) => {
-  const [allMessages, setAllMessages] = useState<Message[]>(messages);
+  const [allMessages, setAllMessages] = useState<ResponseProps[]>([]);
   
   
   useEffect(() => {
     const pusher = pusherClient();
     const channel = pusher.subscribe(conversationId);
   
-    channel.bind("message", (message:Message) => {
+    channel.bind("message", (message:ResponseProps) => {
       setAllMessages((prev) => [...prev, message]);
     });
     
@@ -42,7 +42,23 @@ const MessageArea = ({
 
   return (
     <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-800 space-y-2 relative p-2">
-      {allMessages?.map((message) => (
+      {messages?.map((message) => (
+        <div key={message.id} className="flex flex-col gap-4">
+          {message.userId === user?.id ? (
+            <div className="align-start flex gap-4 items-center">
+              <Avatar url={user.image!} />
+              <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
+            </div>
+          ) : (
+            <div className="justify-start flex flex-row-reverse gap-4 items-center">
+              <Avatar url={otherUser.image!} />
+             <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
+            </div>
+          )}
+        </div>
+      ))}
+
+{allMessages?.map((message) => (
         <div key={message.id} className="flex flex-col gap-4">
           {message.userId === user?.id ? (
             <div className="align-start flex gap-4 items-center">
