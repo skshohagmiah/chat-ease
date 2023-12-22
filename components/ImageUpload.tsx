@@ -12,7 +12,10 @@ const ImageUpload = ({endpoint,oncomplete}:ImageUploadProps) => {
   return (
     <UploadDropzone
     endpoint={endpoint}
-    onClientUploadComplete={(res:any) => oncomplete(res?.url)}
+    onClientUploadComplete={(res:any) => {
+      console.log(res)
+      oncomplete(res?.url)
+    }}
     onUploadError={(error: Error) => {
       // Do something with the error.
       alert(`ERROR! ${error.message}`);
