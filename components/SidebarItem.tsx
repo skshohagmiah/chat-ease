@@ -14,7 +14,7 @@ const SidebarItem = ({ href, label, icon }: SidebarItemProps) => {
   return (
     <Link
       href={href}
-      className={` flex text-3xl hover:flex-col hover:opacity-50 transition text-slate-300 group items-center justify-center gap-1 ${
+      className={` flex text-3xl hover:flex-col hover:opacity-50 transition shadow-xl text-slate-300 group items-center justify-center gap-1 ${
         pathname.includes(href) && "text-white"
       }`}
     >

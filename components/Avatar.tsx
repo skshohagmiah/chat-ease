@@ -19,7 +19,7 @@ const [isActive, setIsActive] = useState(false);
 
   return (
         <div className='relative hover:opacity-45 cursor-pointer'>
-        <Image className='rounded-full ring-1' src={url || '/avatar.jpg'} alt='user photo' width={40} height={40}/>
+        <Image className='rounded-full ring-4' src={url || '/avatar.jpg'} alt='user photo' width={40} height={40}/>
         {isActive && (
           <div className='absolute -top-0 -right-0 w-3 h-3 rounded-full bg-green-500'/>
         )}
