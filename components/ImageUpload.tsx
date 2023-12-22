@@ -5,16 +5,17 @@ import {UploadButton, UploadDropzone} from '@/libs/uploadthing'
 
 interface ImageUploadProps{
     endpoint:'profileImage' | 'textImage',
-    oncomplete:(res:string) => void
+    oncomplete:(res:string) => void,
+    onClose:() => void
 }
 
-const ImageUpload = ({endpoint,oncomplete}:ImageUploadProps) => {
+const ImageUpload = ({endpoint,oncomplete,onClose}:ImageUploadProps) => {
   return (
     <UploadDropzone
     endpoint={endpoint}
-    onClientUploadComplete={(res:any) => {
-      console.log(res)
-      oncomplete(res?.url)
+    onClientUploadComplete={(res) => {
+      oncomplete(res[0].url)
+      onClose()
     }}
     onUploadError={(error: Error) => {
       // Do something with the error.
