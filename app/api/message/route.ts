@@ -11,12 +11,7 @@ export async function POST(req:Request){
             }
         })
         const pusher = pusherServer();
-        pusher.trigger(conversationId,'message', {
-            text:message.text,
-            id:message.id,
-            imageUrl:message.imageUrl,
-            userId:message.userId
-        })
+        pusher.trigger(conversationId,'message', message)
         return Response.json(message, {status:200})
     } catch (error) {
         console.log('message api', error);
