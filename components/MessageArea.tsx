@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Message, User } from "@prisma/client";
 import Avatar from "./Avatar";
 import { pusherClient } from "@/libs/pusher";
+import { formatDate } from "@/libs/formatDate";
 
 interface MessageAreaProps {
   messages: Message[];
@@ -11,11 +12,12 @@ interface MessageAreaProps {
   conversationId: string;
 }
 
-interface ResponseProps{
-  id:string
-  text:string,
-  imageUrl?:string,
-  userId:string,
+interface ResponseProps {
+  id: string;
+  text: string;
+  imageUrl?: string;
+  userId: string;
+  createdAt:Date
 }
 
 const MessageArea = ({
@@ -25,50 +27,70 @@ const MessageArea = ({
   conversationId,
 }: MessageAreaProps) => {
   const [allMessages, setAllMessages] = useState<ResponseProps[]>([]);
-  
-  
+
   useEffect(() => {
     const pusher = pusherClient();
     const channel = pusher.subscribe(conversationId);
-  
-    channel.bind("message", (message:ResponseProps) => {
+
+    channel.bind("message", (message: ResponseProps) => {
       setAllMessages((prev) => [...prev, message]);
     });
-    
+
     return () => {
       pusher.unsubscribe(conversationId);
     };
   }, [conversationId]);
 
+ 
   return (
-    <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-800 space-y-2 relative p-2">
+    <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-900 space-y-2 relative p-2">
       {messages?.map((message) => (
         <div key={message.id} className="flex flex-col gap-4">
           {message.userId === user?.id ? (
             <div className="align-start flex gap-4 items-center">
               <Avatar url={user.image!} />
-              <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
+              <div className="flex flex-col p-1 rounded-md bg-slate-800">
+                <p>{message.text}</p>
+                <small className="text-xs text-slate-400">
+                {formatDate(message.createdAt).toString()}
+                </small>
+              </div>
             </div>
           ) : (
             <div className="justify-start flex flex-row-reverse gap-4 items-center">
               <Avatar url={otherUser.image!} />
-             <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
+              <div className="flex flex-col p-1 rounded-md bg-slate-800">
+                <p>{message.text}</p>
+                <small className="text-xs text-slate-400">
+                {formatDate(message.createdAt).toString()}
+                </small>
+              </div>
             </div>
           )}
         </div>
       ))}
 
-{allMessages?.map((message) => (
+      {allMessages?.map((message) => (
         <div key={message.id} className="flex flex-col gap-4">
           {message.userId === user?.id ? (
             <div className="align-start flex gap-4 items-center">
               <Avatar url={user.image!} />
-              <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
+              <div className="flex flex-col p-1 rounded-md bg-slate-800">
+                <p>{message.text}</p>
+                <small className="text-xs text-slate-400">
+                {formatDate(message.createdAt).toString()}
+                </small>
+              </div>
             </div>
           ) : (
             <div className="justify-start flex flex-row-reverse gap-4 items-center">
               <Avatar url={otherUser.image!} />
-             <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
+              <div className="flex flex-col p-1 rounded-md bg-slate-800">
+                <p>{message.text}</p>
+                <small className="text-xs text-slate-400">
+                {formatDate(message.createdAt).toString()}
+                </small>
+              </div>
             </div>
           )}
         </div>

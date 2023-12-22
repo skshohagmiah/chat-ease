@@ -4,6 +4,7 @@ import './globals.css'
 import SidebarNav from '@/components/SidebarNav'
 import { getAuthSession } from '@/libs/getAuthSession'
 import { redirect } from 'next/navigation'
+import Modal from '@/components/Modal'
 
 const font = Roboto({ subsets: ['latin'] ,weight:['400','500','700']})
 
@@ -23,9 +24,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} bg-slate-900 text-slate-200 h-full`}>
-        <div className='h-full max-w-[1200px] mx-auto flex'>
+        <div className='h-full max-w-[1400px] mx-auto flex'>
           {session && (
-            <SidebarNav />
+            <>
+            <SidebarNav />   
+            </>
           )}
           {children}
         </div>

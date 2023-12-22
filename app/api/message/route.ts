@@ -6,7 +6,7 @@ export async function POST(req:Request){
         const data = await req.json()
         const {conversationId,text,userId,imageUrl} = data;
         const pusher = pusherServer();
-        pusher.trigger(conversationId,'message', {text,userId,imageUrl})
+        pusher.trigger(conversationId,'message', {text,userId,imageUrl,createdAt: new Date()})
         const message = await prisma.message.create({
             data:{
                 ...data

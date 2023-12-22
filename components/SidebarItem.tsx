@@ -18,7 +18,7 @@ const SidebarItem = ({ href, label, icon }: SidebarItemProps) => {
         pathname.includes(href) && "text-white"
       }`}
     >
-      <span className=" bg-slate-500 rounded-full p-2">{icon}</span>
+      <span className="  rounded-full p-2">{icon}</span>
       <p className="hidden group-hover:flex text-xs group-hover:transition-all">
         {label}
       </p>

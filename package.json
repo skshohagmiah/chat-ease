@@ -14,8 +14,10 @@
     "@livekit/components-react": "^1.5.1",
     "@livekit/components-styles": "^1.0.8",
     "@prisma/client": "^5.7.1",
+    "@uploadthing/react": "^6.0.2",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
+    "date-fns": "^3.0.6",
     "livekit-client": "^1.15.5",
     "livekit-server-sdk": "^1.2.7",
     "next": "14.0.4",
@@ -26,6 +28,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.49.2",
     "react-icons": "^4.12.0",
+    "uploadthing": "^6.1.0",
     "use-form-hook": "^0.0.1",
     "zod": "^3.22.4"
   },

@@ -14,14 +14,15 @@ const ConversationHeader = async({
   user: User;
   conversationId: string;
 }) => {
+  
   const currentUser = await getCurrentUser();
   return (
-    <header className="bg-slate-700 rounded-b-md flex justify-between p-2">
+    <header className="bg-slate-900 border-b-[1px] border-slate-600 flex justify-between p-2">
       <div className="flex gap-2 items-center">
         <Avatar url={user.image || ""} />
         <p className="capitalize text-slate-300">{user.name}</p>
       </div>
-      <div className="flex gap-4 items-center mr-8">
+      <div className="flex gap-4 items-center md:mr-8">
         <Link
           href={`/chats/${conversationId}/${currentUser?.email}/audio/room`}
           className="p-2 bg-slate-600 rounded-md"
