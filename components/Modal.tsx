@@ -30,7 +30,7 @@ const Modal = ({oncomplete,onClose}:ModalProps) => {
             </button>
             </div>
             <div>
-              <ImageUpload endpoint='profileImage' oncomplete={oncomplete} />
+              <ImageUpload endpoint='textImage' oncomplete={oncomplete} />
             </div>
         </div>
     </div>

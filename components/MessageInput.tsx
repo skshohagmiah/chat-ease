@@ -40,7 +40,7 @@ const MessageInput = ({user}:{user:User}) => {
   }
 
   const onComplete = (url:string) => {
-    console.log(url)
+    console.log('image upload',url)
     setValue('imageUrl',url)
   }
 

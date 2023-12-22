@@ -4,6 +4,7 @@ import { Message, User } from "@prisma/client";
 import Avatar from "./Avatar";
 import { pusherClient } from "@/libs/pusher";
 import { formatDate } from "@/libs/formatDate";
+import Image from "next/image";
 
 interface MessageAreaProps {
   messages: Message[];
@@ -54,6 +55,7 @@ const MessageArea = ({
                 <small className="text-xs text-slate-400">
                 {formatDate(message.createdAt).toString()}
                 </small>
+                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
               </div>
             </div>
           ) : (
@@ -64,6 +66,7 @@ const MessageArea = ({
                 <small className="text-xs text-slate-400">
                 {formatDate(message.createdAt).toString()}
                 </small>
+                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
               </div>
             </div>
           )}
@@ -80,6 +83,7 @@ const MessageArea = ({
                 <small className="text-xs text-slate-400">
                 {formatDate(message.createdAt).toString()}
                 </small>
+                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
               </div>
             </div>
           ) : (
@@ -90,6 +94,7 @@ const MessageArea = ({
                 <small className="text-xs text-slate-400">
                 {formatDate(message.createdAt).toString()}
                 </small>
+                {message.imageUrl && <Image src={message.imageUrl} alt="text attachment" width={200} height={300}/>}
               </div>
             </div>
           )}
