@@ -25,15 +25,16 @@ const MessageArea = ({
   conversationId,
 }: MessageAreaProps) => {
   const [allMessages, setAllMessages] = useState<Message[]>(messages);
-
+  
+  
   useEffect(() => {
     const pusher = pusherClient();
     const channel = pusher.subscribe(conversationId);
-
+  
     channel.bind("message", (message:Message) => {
       setAllMessages((prev) => [...prev, message]);
     });
-
+    
     return () => {
       pusher.unsubscribe(conversationId);
     };
@@ -46,12 +47,12 @@ const MessageArea = ({
           {message.userId === user?.id ? (
             <div className="align-start flex gap-4 items-center">
               <Avatar url={user.image!} />
-              {message.text}
+              <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
             </div>
           ) : (
             <div className="justify-start flex flex-row-reverse gap-4 items-center">
               <Avatar url={otherUser.image!} />
-              {message.text}
+             <p className="p-1 rounded-md bg-slate-500">{message.text}</p>
             </div>
           )}
         </div>

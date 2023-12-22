@@ -29,7 +29,7 @@ const MessageInput = ({user}:{user:User}) => {
 
   const onsubmit = async(values: z.infer<typeof formSchema>) => {
       try {
-        const res = await axios.post('/api/message',{...values, conversationId, userId:user?.id})
+        await axios.post('/api/message',{...values, conversationId, userId:user?.id})
         reset()
       } catch (error) {
         console.log(error)
