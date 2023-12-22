@@ -2,7 +2,6 @@ import { prisma } from "@/libs/db";
 import { pusherServer } from "@/libs/pusher";
 
 export async function POST(req:Request){
-    const pusher = pusherServer();
     try {
         const data = await req.json()
         const {conversationId} = data;
@@ -11,6 +10,7 @@ export async function POST(req:Request){
                 ...data
             }
         })
+        const pusher = pusherServer();
         pusher.trigger(conversationId,'message', {
             text:message.text,
             id:message.id,

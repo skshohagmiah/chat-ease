@@ -20,7 +20,7 @@ export default function Page() {
   const pathname = usePathname()
   const params  = useParams()
   const room = params.conversationId;
-  const name = 'test' ;
+  const name = params.name ;
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Page() {
         console.error(e);
       }
     })();
-  }, [room]);
+  }, [room,name]);
 
   if (token === "") {
     return <div className='text-center'>Getting token...</div>;

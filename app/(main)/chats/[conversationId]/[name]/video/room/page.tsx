@@ -16,11 +16,12 @@ import { useParams } from 'next/navigation';
 
 export default function Page() {
   // TODO: get user input for room and name
-
+  
   const params  = useParams()
   const room = params.conversationId;
-  const name = 'test' ;
+  const name = params.name;
   const [token, setToken] = useState("");
+  
 
   useEffect(() => {
     (async () => {
@@ -34,7 +35,7 @@ export default function Page() {
         console.error(e);
       }
     })();
-  }, [room]);
+  }, [room, name]);
 
   if (token === "") {
     return <div>Getting token...</div>;

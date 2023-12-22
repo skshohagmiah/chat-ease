@@ -18,7 +18,7 @@ const ConversationIdPage = async({params}:ConversationIdPageProps) => {
             id:params.conversationId
         },
         include:{
-            messages:{},
+            messages:true,
             userOne:true,
             userTwo:true
         }

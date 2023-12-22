@@ -37,7 +37,7 @@ const MessageArea = ({
     return () => {
       pusher.unsubscribe(conversationId);
     };
-  }, [conversationId]); // Add conversationId and messages to dependencies
+  }, [conversationId]);
 
   return (
     <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-800 space-y-2 relative p-2">
