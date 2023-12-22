@@ -46,6 +46,18 @@ const MessageArea = ({
     };
   }, [conversationId]);
 
+  useEffect(() => {
+    const pusher = pusherClient();
+    const channel = pusher.subscribe(conversationId);
+    
+    channel.bind("callMessage", (message:string) => {
+      setCallMessage(message)
+    });
+    return () => {
+      pusher.unsubscribe(conversationId);
+    };
+  }, [conversationId]);
+
   return (
     <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-900 space-y-2 relative p-2">
       {messages?.map((message) => (
