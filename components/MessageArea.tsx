@@ -28,6 +28,7 @@ const MessageArea = ({
   conversationId,
 }: MessageAreaProps) => {
   const [allMessages, setAllMessages] = useState<ResponseProps[]>([]);
+  const [callMessage, setCallMessage] = useState('')
 
   useEffect(() => {
     const pusher = pusherClient();
@@ -37,6 +38,9 @@ const MessageArea = ({
       setAllMessages((prev) => [...prev, message]);
     });
 
+    channel.bind("callMessage", (message:string) => {
+      setCallMessage(message)
+    });
     return () => {
       pusher.unsubscribe(conversationId);
     };
@@ -70,7 +74,7 @@ const MessageArea = ({
           ) : (
             <div className="justify-start flex flex-row-reverse gap-4 items-center">
               <Avatar url={otherUser.image!} />
-              <div className="flex flex-col p-1 rounded-md bg-slate-800">
+               <div className="flex flex-col p-1 rounded-md bg-slate-800">
                 <p>{message.text}</p>
                 <small className="text-xs text-slate-400">
                   {formatDate(message.createdAt).toString()}
@@ -130,6 +134,7 @@ const MessageArea = ({
           )}
         </div>
       ))}
+      <p>{callMessage}</p>
     </section>
   );
 };

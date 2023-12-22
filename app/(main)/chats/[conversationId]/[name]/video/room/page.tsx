@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Track } from 'livekit-client';
 import { useParams } from 'next/navigation';
+import axios from 'axios';
 
 export default function Page() {
   // TODO: get user input for room and name
@@ -21,9 +22,10 @@ export default function Page() {
   const room = params.conversationId;
   const name = params.name;
   const [token, setToken] = useState("");
-  
+
 
   useEffect(() => {
+    axios.post(`/api/call-message`, {conversationId:params.conversationId}),
     (async () => {
       try {
         const resp = await fetch(
@@ -35,7 +37,7 @@ export default function Page() {
         console.error(e);
       }
     })();
-  }, [room, name]);
+  }, [room, name,params.conversationId]);
 
   if (token === "") {
     return <div>Getting token...</div>;
