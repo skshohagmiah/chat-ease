@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Message, User } from "@prisma/client";
 import Avatar from "./Avatar";
 import { pusherClient } from "@/libs/pusher";
@@ -27,8 +27,10 @@ const MessageArea = ({
   user,
   conversationId,
 }: MessageAreaProps) => {
-  const [incomimgMessages, setImcommingMessages] = useState<ResponseProps[]>([]);
-  const [callMessage, setCallMessage] = useState('')
+  const [incomimgMessages, setImcommingMessages] = useState<ResponseProps[]>(
+    []
+  );
+  const messageContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const pusher = pusherClient();
@@ -36,19 +38,22 @@ const MessageArea = ({
 
     channel.bind("message", (message: ResponseProps) => {
       setImcommingMessages((prev) => [...prev, message]);
+      if (messageContainerRef.current) {
+        messageContainerRef.current.scrollTop =
+          messageContainerRef.current.scrollHeight;
+      }
     });
 
-    channel.bind("callMessage", (message:string) => {
-      setCallMessage(message)
-    });
     return () => {
       pusher.unsubscribe(conversationId);
     };
   }, [conversationId]);
 
-
   return (
-    <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-800/20 space-y-2 relative py-2 px-4">
+    <section
+      ref={messageContainerRef}
+      className="overflow-y-scroll mb-12 h-full w-full bg-slate-800/20 space-y-2 relative py-2 px-4"
+    >
       {messages?.map((message) => (
         <div key={message.id} className="flex flex-col gap-4">
           {message.userId === user?.id ? (
@@ -63,7 +68,7 @@ const MessageArea = ({
                 </div>
                 {message.imageUrl && (
                   <Image
-                  className="mt-2 rounded"
+                    className="mt-2 rounded"
                     src={message.imageUrl}
                     alt="text attachment"
                     width={300}
@@ -75,7 +80,7 @@ const MessageArea = ({
           ) : (
             <div className="justify-start flex flex-row-reverse gap-4 items-center">
               <Avatar url={otherUser.image!} />
-               <div className="flex flex-col p-1 rounded-md bg-slate-800">
+              <div className="flex flex-col p-1 rounded-md bg-slate-800">
                 <p>{message.text}</p>
                 <small className="text-xs text-slate-400">
                   {formatDate(message.createdAt).toString()}
@@ -135,7 +140,6 @@ const MessageArea = ({
           )}
         </div>
       ))}
-      <p>{callMessage}</p>
     </section>
   );
 };

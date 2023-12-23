@@ -26,7 +26,7 @@ const ConversationIdPage = async ({ params }: ConversationIdPageProps) => {
       userTwo: true,
     },
   });
-  
+
   const otherUser =
     conversation?.userOne.id === user?.id
       ? conversation?.userTwo

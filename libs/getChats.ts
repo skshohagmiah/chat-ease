@@ -19,21 +19,8 @@ export const getChats = async () => {
     }
   });
 
-  const groups = await prisma.group.findMany({
-    where: {
-      members: {
-        some: {
-          userId: currentUser?.id,
-        },
-      },
-    },
-    orderBy:{
-      createdAt:'desc'
-    }
-  });
 
   return {
-    conversations,
-    groups,
+    conversations
   };
 };
