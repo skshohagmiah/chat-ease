@@ -6,12 +6,8 @@ export async function POST(req:Request) {
         const group = await prisma.group.create({
             data:{
                 name:text,
-                imageUrl,
-                members:{
-                create:{
-                    userId
-                }
-                }
+                imageUrl:text,
+                userId
             }
         })
         return Response.json(group,{status:200})
