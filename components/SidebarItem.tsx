@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import Tooltip from "./Tooltip";
 
 interface SidebarItemProps {
   href: string;
@@ -12,17 +13,17 @@ interface SidebarItemProps {
 const SidebarItem = ({ href, label, icon }: SidebarItemProps) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={href}
-      className={` flex text-3xl hover:flex-col hover:opacity-50 transition shadow-xl text-slate-300 group items-center justify-center gap-1 ${
-        pathname.includes(href) && "text-white"
-      }`}
-    >
-      <span className="  rounded-full p-2">{icon}</span>
-      <p className="hidden group-hover:flex text-xs group-hover:transition-all">
-        {label}
-      </p>
-    </Link>
+    <Tooltip text={label!} fullWidth>
+      <Link
+        href={href}
+        className={` flex w-full text-3xl hover:flex-col hover:opacity-50 transition shadow-xl text-slate-300 group items-center justify-center gap-1 ${
+          pathname.includes(href) &&
+          "text-white border-b-2 md:border-b-0 md:border-l-4 border-slate-500"
+        }`}
+      >
+        <span className="  rounded-full p-2">{icon}</span>
+      </Link>
+    </Tooltip>
   );
 };
 

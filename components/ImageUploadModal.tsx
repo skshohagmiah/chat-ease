@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react'
 import ImageUpload from './ImageUpload'
 import { RxCross1 } from "react-icons/rx";
 
-interface ModalProps{
+interface ImageUploadModalProps{
     oncomplete:(url:string) => void,
     onClose:() => void
 }
 
-const Modal = ({oncomplete,onClose}:ModalProps) => {
+const ImageUploadModal = ({oncomplete,onClose}:ImageUploadModalProps) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -37,4 +37,4 @@ const Modal = ({oncomplete,onClose}:ModalProps) => {
   )
 }
 
-export default Modal
+export default ImageUploadModal

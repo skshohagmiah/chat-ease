@@ -4,7 +4,7 @@ import './globals.css'
 import SidebarNav from '@/components/SidebarNav'
 import { getAuthSession } from '@/libs/getAuthSession'
 import { redirect } from 'next/navigation'
-import Modal from '@/components/Modal'
+import Modal from '@/components/ImageUploadModal'
 
 const font = Roboto({ subsets: ['latin'] ,weight:['400','500','700']})
 

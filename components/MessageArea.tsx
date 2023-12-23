@@ -27,7 +27,7 @@ const MessageArea = ({
   user,
   conversationId,
 }: MessageAreaProps) => {
-  const [allMessages, setAllMessages] = useState<ResponseProps[]>([]);
+  const [incomimgMessages, setImcommingMessages] = useState<ResponseProps[]>([]);
   const [callMessage, setCallMessage] = useState('')
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const MessageArea = ({
     const channel = pusher.subscribe(conversationId);
 
     channel.bind("message", (message: ResponseProps) => {
-      setAllMessages((prev) => [...prev, message]);
+      setImcommingMessages((prev) => [...prev, message]);
     });
 
     channel.bind("callMessage", (message:string) => {
@@ -46,20 +46,9 @@ const MessageArea = ({
     };
   }, [conversationId]);
 
-  useEffect(() => {
-    const pusher = pusherClient();
-    const channel = pusher.subscribe(conversationId);
-    
-    channel.bind("callMessage", (message:string) => {
-      setCallMessage(message)
-    });
-    return () => {
-      pusher.unsubscribe(conversationId);
-    };
-  }, [conversationId]);
 
   return (
-    <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-900 space-y-2 relative p-2">
+    <section className="overflow-y-scroll mb-12 h-full w-full bg-slate-800/20 space-y-2 relative py-2 px-4">
       {messages?.map((message) => (
         <div key={message.id} className="flex flex-col gap-4">
           {message.userId === user?.id ? (
@@ -105,7 +94,7 @@ const MessageArea = ({
         </div>
       ))}
 
-      {allMessages?.map((message) => (
+      {incomimgMessages?.map((message) => (
         <div key={message.id} className="flex flex-col gap-4">
           {message.userId === user?.id ? (
             <div className="align-start flex gap-4 items-center">
