@@ -9,7 +9,7 @@ const ChatsListHeader = ({user}:{user:User}) => {
       <div className="flex flex-col">
         <h2 className="text-lg font-semibold text-slate-300">Messages</h2>
         <small className="text-slate-400 text-xs">
-          your existing conversation and groups
+          your existing conversations
         </small>
       </div>
     </div>
