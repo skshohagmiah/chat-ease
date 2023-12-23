@@ -1,7 +1,6 @@
 import ConversationHeader from "@/components/ConversationHeader";
 import MessageArea from "@/components/MessageArea";
 import MessageInput from "@/components/MessageInput";
-import MidSidebar from "@/components/ChatsList";
 import { prisma } from "@/libs/db";
 import { getCurrentUser } from "@/libs/getCurrentUser";
 import React from "react";

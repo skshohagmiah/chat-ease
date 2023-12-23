@@ -38,16 +38,19 @@ const MessageArea = ({
 
     channel.bind("message", (message: ResponseProps) => {
       setImcommingMessages((prev) => [...prev, message]);
-      if (messageContainerRef.current) {
-        messageContainerRef.current.scrollTop =
-          messageContainerRef.current.scrollHeight;
-      }
     });
 
     return () => {
       pusher.unsubscribe(conversationId);
     };
   }, [conversationId]);
+
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
+    }
+  }, [messages, incomimgMessages]);
 
   return (
     <section

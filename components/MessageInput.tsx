@@ -66,7 +66,7 @@ const MessageInput = ({ user }: { user: User }) => {
   return (
     <form
       onSubmit={handleSubmit(onsubmit)}
-      className="absolute bottom-0 left-2 right-2 p-2 flex items-center justify-center gap-2 bg-slate-900/50 overflow-hidden w-[98%]"
+      className="absolute bottom-0 left-2 right-2  flex items-center justify-center gap-2 bg-transparent overflow-hidden w-[98%]"
     >
       <Tooltip text="upload an image" position="-top-4 left-1">
         <button
@@ -82,9 +82,9 @@ const MessageInput = ({ user }: { user: User }) => {
         disabled={isSubmitting}
         type="text"
         {...register("text", { required: true })}
-        className="p-3 bg-slate-600 rounded-md text-lg md:text-sm w-full focus:outline-none text-slate-200"
+        className="p-2 bg-slate-600 rounded-md text-lg md:text-sm w-full focus:outline-none text-slate-200"
       />
-      <button className="hover:opacity-50 transition">
+      <button className="hover:opacity-50 transition" type="submit">
         <IoSend className="w-8 h-8" />
       </button>
     </form>
