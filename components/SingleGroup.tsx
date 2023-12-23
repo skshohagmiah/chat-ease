@@ -24,6 +24,9 @@ const SingleGroup = async ({ group }: { group: Group }) => {
     }
   })
 
+
+  console.log('group member',groupMember)
+
   return (
     <Link
       href={`/chats/${group?.id}`}
