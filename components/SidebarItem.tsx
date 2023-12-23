@@ -16,7 +16,7 @@ const SidebarItem = ({ href, label, icon }: SidebarItemProps) => {
     <Tooltip text={label!} fullWidth>
       <Link
         href={href}
-        className={` flex w-full text-3xl hover:flex-col hover:opacity-50 transition shadow-xl text-slate-300 group items-center justify-center gap-1 ${
+        className={` flex w-full text-3xl hover:flex-col hover:opacity-50 transition text-slate-300 group items-center justify-center gap-1 ${
           pathname.includes(href) &&
           "text-white border-b-2 md:border-b-0 md:border-l-4 border-slate-500"
         }`}

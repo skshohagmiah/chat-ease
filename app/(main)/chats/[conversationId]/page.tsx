@@ -13,7 +13,7 @@ interface ConversationIdPageProps {
 }
 
 const ConversationIdPage = async ({ params }: ConversationIdPageProps) => {
-  const { conversations, groups } = await getChats();
+  const { conversations } = await getChats();
   const user = await getCurrentUser();
 
   const conversation = await prisma.conversation.findFirst({
@@ -36,7 +36,7 @@ const ConversationIdPage = async ({ params }: ConversationIdPageProps) => {
   return (
     <div className="h-full w-full flex">
       <div className="hidden md:block">
-        <ChatsList conversations={conversations} groups={groups} />
+        <ChatsList conversations={conversations} />
       </div>
       <div className="w-full flex flex-col mb-[4.5rem] md:mb-0 relative">
         <ConversationHeader
