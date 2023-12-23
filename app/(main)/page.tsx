@@ -7,6 +7,7 @@ export default async function Home() {
   if (!session) {
      return redirect("/login");
   }
+  
   if(session){
     return redirect('/chats')
   }
