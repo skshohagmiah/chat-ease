@@ -1,7 +1,7 @@
-Overview
+Overview:
 I developed a feature-rich Chat App using Next.js 14, Prisma, MongoDB, Pusher, NextAuth, and Livekit. This real-time communication platform supports one-to-one text messaging, image sharing, and audio/video calls.
 
-Key Features
+Key Features:
 Real-time messaging with Pusher for instant communication.
 Multimedia support for sharing images, enhancing the chat experience.
 Secure audio and video calls integrated with Livekit.
